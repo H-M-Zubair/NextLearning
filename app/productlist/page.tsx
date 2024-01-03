@@ -10,14 +10,9 @@ import { deleteCookie } from 'cookies-next';
 
 const Page = () => {
   const router = useRouter();
-  // useEffect(() => {
-  //   if (!getCookie("token")) {
-  //     router.push("login");
-  //   }
-  // }, [router]);
   const {data,error,loading} = useProduct("https://dummyjson.com/products");
   if (loading) return <h1>LOADING...</h1>;
-  if (error) {
+  if (error) { 
     console.error(error);
     return <h1>Error loading data</h1>;
   }
@@ -25,11 +20,7 @@ const Page = () => {
     deleteCookie("token");
     router.push("/login");
   };
-
-  
-
   return (
-    
     <div className="w-full bg-gray-100">
       <h1 className="text-cyan-600 text-center font-bold text-3xl p-2">
         Product List
@@ -40,7 +31,8 @@ const Page = () => {
       <div>
         <div className="container grid grid-cols-1 min-w-full max-w-screen-xl md:grid-cols-2 gap-10 lg:grid-cols-3 xl:grid-cols-4 p-10 mx-auto">
           {data &&
-            data.map((item: any) => (
+            data.map((item: any) => 
+            (
               <Link key={item.id} href={`/productlist/${item.id}`}>
                 <div
                   key={item.id}
